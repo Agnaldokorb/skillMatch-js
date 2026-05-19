@@ -1,4 +1,4 @@
-const candidato = {
+const candidato = { // Objeto que representa o candidato, contendo informações como nome, área de atuação, habilidades, experiência em meses e se aceita modelo híbrido de trabalho
   nome: "Suelen Tonello",
   area: "Front-End",
   habilidades: [

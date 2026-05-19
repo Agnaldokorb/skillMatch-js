@@ -87,3 +87,7 @@ O planejamento das tarefas foi organizado em **https://trello.com/invite/b/6a087
 ## Observacão
 
 **projeto em desenvolvimento**
+
+## Mapa mental do projeto
+
+![Preview do projeto](./assets/mapa-mental.png)
