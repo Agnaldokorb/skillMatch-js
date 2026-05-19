@@ -58,9 +58,8 @@ class Vaga {
   exibirResumo() {
     // Método para exibir um resumo da vaga
     return `${this.cargo} na empresa ${this.empresa}`; // Exemplo: "Desenvolvedor Front-End Junior na empresa TechStart"
-    }
+  }
 
-    
   atendeTodosRequisitos(habilidadesCandidato) {
     // Método para verificar se o candidato atende a todos os requisitos da vaga
     return this.requisitos.every(
@@ -128,4 +127,44 @@ function classificarCompatibilidade(percentual) {
   }
 
   return "Baixa compatibilidade";
+}
+
+function buscarVagaPorId(listaVagas, id) {
+  // Função para buscar uma vaga específica por ID usando o método find
+  return listaVagas.find((vaga) => vaga.id === id); // Retorna a vaga encontrada com o ID correspondente ou undefined se não encontrar
+}
+
+function encontrarMelhorVaga(resultados) {
+  // Função para encontrar a vaga com a maior compatibilidade usando o método reduce
+  return resultados.reduce((melhor, atual) => {
+    // Compara o percentual de compatibilidade do resultado atual com o melhor encontrado até agora
+    if (!melhor) {
+      // Se ainda não houver um melhor definido, o resultado atual se torna o melhor
+      return atual; // Retorna o resultado atual como o melhor encontrado até agora
+    }
+    return atual.percentual > melhor.percentual ? atual : melhor; // Compara os percentuais de compatibilidade e retorna o resultado com o maior percentual
+  }, null); // O segundo argumento null é o valor inicial para o acumulador, indicando que inicialmente não há um melhor definido
+}
+
+function gerarRecomendacaoEstudo(resultados) {
+  // Função para gerar uma recomendação de estudo com base nas habilidades faltantes mais comuns entre as vagas analisadas
+  const mapaFaltantes = resultados.reduce((acumulador, resultado) => {
+    // Para cada resultado, itera sobre as habilidades faltantes e conta a frequência de cada habilidade faltante em um objeto acumulador
+    resultado.habilidadesFaltantes.forEach((habilidade) => {
+      // Para cada habilidade faltante, incrementa a contagem no acumulador
+      acumulador[habilidade] = (acumulador[habilidade] || 0) + 1; // Se a habilidade já tiver uma contagem, incrementa; caso contrário, inicia a contagem em 1
+    });
+    return acumulador; // Retorna o acumulador atualizado para a próxima iteração do reduce
+  }, {});
+
+  const habilidadesPriorizadas = Object.entries(mapaFaltantes) // Converte o objeto de habilidades faltantes em um array de [habilidade, contagem] para facilitar a ordenação
+    .sort((a, b) => b[1] - a[1]) // Ordena o array de habilidades faltantes com base na contagem em ordem decrescente, para priorizar as habilidades mais comuns entre as vagas analisadas
+    .map((item) => item[0]); // Mapeia o array ordenado para obter apenas as habilidades, resultando em um array de habilidades priorizadas para estudo
+
+  if (habilidadesPriorizadas.length === 0) {
+    // Se não houver habilidades faltantes, significa que o candidato atende a todos os requisitos das vagas analisadas
+    return "Voce ja atende todos os requisitos das vagas analisadas. Foque em praticar entrevistas e portfolio."; // Retorna uma mensagem indicando que o candidato já atende a todos os requisitos e pode focar em outras áreas para se preparar para as entrevistas
+  }
+
+  return `Priorize estudar: ${habilidadesPriorizadas.join(", ")}. Esses temas aparecem com frequencia nas vagas analisadas.`; // Retorna uma mensagem recomendando as habilidades a serem priorizadas para estudo, listando as habilidades faltantes mais comuns entre as vagas analisadas
 }
