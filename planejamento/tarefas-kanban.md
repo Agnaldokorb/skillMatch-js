@@ -8,21 +8,6 @@
 
 ## A Fazer
 
--	Criar objeto candidato
--	Criar array de vagas
--	Criar função para calcular compatibilidade
--	Criar função para listar habilidades faltantes
--	Criar classificação por percentual
--	Usar map/filter/find/reduce/every
--	Criar classe Vaga
--	Criar classe VagaFrontEnd
--	Aplicar herança
--	Usar this em método de classe
--	Criar função com callback
--	Criar função com closure
--	Criar Promise simulada
--	Criar função async/await
--	Testar o código no console
 -	Atualizar README
 -	Enviar links no AVA
 
@@ -32,3 +17,18 @@
 - [x] Criar repositório no GitHub
 - [x] Criar arquivo skillmatch.js
 - [x] Criar README.md
+- [x] Criar objeto candidato
+- [x] Criar array de vagas
+- [x] Criar função para calcular compatibilidade
+- [x] Criar função para listar habilidades faltantes
+- [x] Criar classificação por percentual
+- [x] Usar map/filter/find/reduce/every
+- [x] Criar classe Vaga
+- [x] Criar classe VagaFrontEnd
+- [x] Aplicar herança
+- [x] Usar this em método de classe
+- [x] Criar função com callback
+- [x] Criar função com closure
+- [x] Criar Promise simulada
+- [x] Criar função async/await
+- [x] Testar o código no console
